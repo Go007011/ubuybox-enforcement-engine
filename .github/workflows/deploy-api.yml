@@ -49,9 +49,11 @@ jobs:
         with:
         - uses: azure/login@v2
   with:
-    client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7D9B52BF16A64442BC5521DBE4F57E09 }}
-    tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_17635350150D4121B0362FFB42C5A5FD }}
-    subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
+   - uses: azure/login@v2
+  with:
+    client-id: ${{ secrets.AZURE_CLIENT_ID }}
+    tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - uses: Azure/functions-action@v1
         with:
