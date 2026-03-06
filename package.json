@@ -1,0 +1,13 @@
+{
+  "name": "ubuybox-enforcement-engine",
+  "version": "1.0.0",
+  "description": "UBUYBOX Rule Enforcement Engine",
+  "main": "index.js",
+  "scripts": {
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "axios": "^1.6.0"
+  }
+}
