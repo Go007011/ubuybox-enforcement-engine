@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js project to Azure Function App - ubuybox-api-007011
+name: Build and deploy Node.js project to Azure Function App - ubuybox-enforcement-engin
 
 on:
   push:
@@ -78,4 +78,5 @@ jobs:
           app-name: 'ubuybox-api-007011'
           slot-name: 'Production'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+
           
