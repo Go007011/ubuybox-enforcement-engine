@@ -1,7 +1,7 @@
 const { fetchSpvList } = require('../../services/spvService');
 const { evaluateSpvs } = require('../../services/ruleEngine');
 
-module.exports = async function (context, myTimer) {
+module.exports = async function RuleRunner(context, myTimer) {
   context.log('RuleRunner started');
 
   if (myTimer && myTimer.isPastDue) {
