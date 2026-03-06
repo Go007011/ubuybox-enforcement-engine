@@ -1,0 +1,11 @@
+{
+  "name": "ubuybox-enforcement-engine",
+  "version": "1.0.0",
+  "description": "UBUYBOX SPV Enforcement Engine",
+  "main": "index.js",
+  "type": "commonjs",
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "node-fetch": "^2.6.7"
+  }
+}
