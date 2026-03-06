@@ -1,6 +1,9 @@
 name: Build and deploy Node.js project to Azure Function App - ubuybox-enforcement-engine
 
 on:
+permissions:
+  id-token: write
+  contents: read
   push:
     branches:
       - main
