@@ -6,6 +6,6 @@
   "type": "commonjs",
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "node-fetch": "^2.6.7"
+    "axios": "^1.6.0"
   }
 }
