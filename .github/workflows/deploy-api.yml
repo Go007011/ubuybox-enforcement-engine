@@ -1,10 +1,11 @@
 name: Build and deploy Node.js project to Azure Function App -  ubuybox-api-007011
 
-on:
-  push:
+push:
     branches:
       - main
   workflow_dispatch:
+  
+on:
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
