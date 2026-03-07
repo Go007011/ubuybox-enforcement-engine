@@ -1,4 +1,4 @@
-name: Deploy UBUYBOX API to Azure
+name: Deploy UBUYBOX Enforcement Engine to Azure
 
 permissions:
   id-token: write
@@ -12,7 +12,7 @@ on:
 
 env:
   NODE_VERSION: "20.x"
-  AZURE_FUNCTIONAPP_NAME: "ubuybox-api-007011"
+  AZURE_FUNCTIONAPP_NAME: "ubuybox-enforcement-engine"
 
 jobs:
   build:
