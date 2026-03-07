@@ -1,0 +1,58 @@
+name: Deploy UBUYBOX Enforcement Engine
+# Repo lane mapping:
+# - GitHub repo: Go007011/ubuybox-enforcement-engine
+# - Azure Function App: ubuybox-enforcement-engine
+# - Expected OIDC subject: repo:Go007011/ubuybox-enforcement-engine:ref:refs/heads/main
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  NODE_VERSION: "20.x"
+  AZURE_FUNCTIONAPP_NAME: "ubuybox-enforcement-engine"
+
+jobs:
+  deploy:
+    # Prevent cross-repo deployment if this workflow is copied elsewhere.
+    if: github.repository == 'Go007011/ubuybox-enforcement-engine'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install --omit=dev
+
+      - name: Prepare deployable app root in /api
+        run: |
+          cp host.json api/host.json
+          cp package.json api/package.json
+          if [ -f package-lock.json ]; then cp package-lock.json api/package-lock.json; fi
+
+      - name: Azure Login
+        # Enforcement repo must use enforcement-specific client ID secret with shared tenant/subscription secrets.
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID_ENFORCEMENT }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          audience: api://AzureADTokenExchange
+
+      - name: Deploy Azure Function
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+          package: ./api
